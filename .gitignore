@@ -1,6 +1,7 @@
 data/
 .env/
-submissions/
+submissions/*.csv
+models/*.pkl
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

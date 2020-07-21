@@ -1,17 +1,12 @@
 [
     {
-        "estimator": ["RandomForestRegressor(random_state=1903, criterion = 'mse')"],
-        "estimator__n_estimators": [1,10],
-        "estimator__max_features": ["auto"],
-        "estimator__min_samples_split": [20],
-        "estimator__ccp_alpha": [0],
-        "estimator__min_samples_leaf": [1]
-        
-    },
-    
-    {
         "estimator": ["GradientBoostingRegressor(random_state=1903, loss='huber')"],
-        "estimator__n_estimators": [200,300],
-        "estimator__learning_rate": [0.1]
+        "estimator__n_estimators": [300],
+        "estimator__learning_rate": [0.08],
+        "estimator__subsample": [0.2],
+        "estimator__min_samples_split": [2,3],
+        "estimator__min_samples_leaf": [8],
+        "estimator__min_impurity_decrease": [0,0.05],
+        "estimator__alpha":[0.3,0.2]
     }
 ]

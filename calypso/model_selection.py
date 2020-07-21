@@ -31,7 +31,7 @@ class Training:
         
         self.results = GridSearchCV(pipe, 
                                     self.parameters, 
-                                    verbose=0, 
+                                    verbose=2, 
                                     n_jobs=-1, 
                                     scoring = 'neg_mean_squared_error')
 
@@ -90,13 +90,11 @@ class Training:
 
     def validate(self):
 
-        y_pred_train = self.best_model.predict(self.X_train)
         self.y_pred_valid = self.best_model.predict(self.X_valid)
 
-        self.mse_train = mse(self.y_train, y_pred_train)
         self.mse_valid = mse(self.y_valid, self.y_pred_valid)
 
-        return self.mse_train, self.mse_valid
+        return self.mse_valid
 
 
     def residuals(self, df = pd.DataFrame()):
