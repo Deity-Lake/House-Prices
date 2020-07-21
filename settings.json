@@ -1,5 +1,0 @@
-{
-    "competition_name": "house-prices-advanced-regression-techniques",
-    "id_column": "Id",
-    "target_column": "SalePrice"
-}

@@ -1,0 +1,70 @@
+{
+    "factor_to_number": {
+
+        "ExterCond": {
+            "order": ["Ex", "Gd", "TA", "Fa", "Po"],
+            "grade": [5,4,3,2,1]
+        },
+        "ExterQual": {                            
+            "order": ["Ex", "Gd", "TA", "Fa", "Po"],
+            "grade": [5,4,3,2,1]
+        },
+        "LotShape": {
+            "order": ["Reg", "IR1", "IR2", "IR3"],
+            "grade": [4,3,2,1]
+        },
+        "LandSlope": {
+            "order": ["Gtl", "Mod", "Sev"],
+            "grade": [3,2,1]
+        },
+        "LandContour": {
+            "order": ["Lvl", "Bnk", "HLS", "Low"],
+            "grade": [4,3,2,1]
+        },
+        "HeatingQC": {
+            "order": ["Ex", "Gd", "TA", "Fa", "Po"],
+            "grade": [5,4,3,2,1]
+        }
+    },
+
+    "scale_adjust": {
+        
+        "YrSold": {
+            "value": -2010
+            }
+        },
+
+    "continuous_to_binary": {
+        
+        "PoolArea": {
+            "threshold": 0
+            }
+        },
+
+    "identity": ["LotArea", 
+                 "OverallQual", 
+                 "OverallCond", 
+                 "Fireplaces", 
+                 "KitchenAbvGr"],
+
+    "missing_class": ["Alley", 
+                      "MasVnrType"],
+
+    "missing_number_to_inf": ["LotFrontage", 
+                              "BsmtFullBath"],
+
+    "binary_dummies": ["Street", 
+                       "Alley", 
+                       "SaleCondition", 
+                       "LandSlope", 
+                       "CentralAir", 
+                       "KitchenQual",
+                       "Foundation",
+                       "MSSubClass",
+                       "MSZoning",
+                       "LotConfig",
+                       "Neighborhood",
+                       "BldgType",
+                       "RoofStyle",
+                       "MasVnrType"]
+    }  

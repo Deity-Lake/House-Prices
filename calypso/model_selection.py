@@ -9,12 +9,17 @@ from sklearn.metrics import mean_squared_error as mse
 from sklearn.metrics import mean_squared_log_error, make_scorer, mean_squared_error
 from sklearn.ensemble import GradientBoostingRegressor, RandomForestRegressor
 
-class KaggleTrain:
 
-    def __init__(self, X_train, y_train, parameters):
-        self.X_train = X_train
-        self.y_train = y_train
+class Training:
+
+    def __init__(self, X, y, parameters):
+        self.X = X
+        self.y = y
         self.parameters = parameters
+
+    def train_test_split(self):
+
+        self.X_train, self.X_valid, self.y_train, self.y_valid = train_test_split(self.X, self.y, test_size=0.2, random_state=1903)
 
     def gridsearch(self):
 
@@ -26,8 +31,8 @@ class KaggleTrain:
         
         self.results = GridSearchCV(pipe, 
                                     self.parameters, 
-                                    verbose=2, 
-                                    n_jobs=6, 
+                                    verbose=0, 
+                                    n_jobs=-1, 
                                     scoring = 'neg_mean_squared_error')
 
         self.results.fit(self.X_train, self.y_train)
@@ -68,10 +73,22 @@ class KaggleTrain:
         return self.best_model
 
     
-    def validate(self, X_valid, y_valid):
+    def metrics(self):
 
-        self.X_valid = X_valid
-        self.y_valid = y_valid
+        y_pred_train = self.best_model.predict(self.X_train)
+
+        self.mse_train = mse(self.y_train, y_pred_train)
+
+        return self.mse_train
+
+    def save(self, folder = "models/"):
+
+        pkl_name = "{}.pkl".format(datetime.now().strftime("%Y-%b-%d-%H-%M-%S"))
+
+        pickle.dump(self.best_model, open(folder + pkl_name, 'wb'))
+
+
+    def validate(self):
 
         y_pred_train = self.best_model.predict(self.X_train)
         self.y_pred_valid = self.best_model.predict(self.X_valid)
@@ -94,16 +111,9 @@ class KaggleTrain:
 
     def corrplot(self):
 
-       sns.scatterplot(x="real", y="pred", data=self.errors).get_figure()
+       sns.scatterplot(x="real", y="pred", data=self.residuals())
 
 
     def hetplot(self):
 
-       sns.scatterplot(x="pred", y="res", data=self.errors).get_figure()
-
-
-    def save(self, folder = "models/"):
-
-        pkl_name = "{}.pkl".format(datetime.now().strftime("%Y-%b-%d-%H-%M-%S"))
-
-        pickle.dump(self.best_model, open(folder + pkl_name, 'wb'))
+       sns.scatterplot(x="pred", y="res", data=self.residuals())
