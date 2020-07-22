@@ -44,8 +44,22 @@ class Engineering:
         
         df[list(binary_dummy.columns)] = binary_dummy
         X_columns =  X_columns + list(binary_dummy.columns)
+
+        # Dummy faltante
+        for var in self.params["insert_dummy_faltante"].keys():
+            
+            dummy_faltante = pd.get_dummies(data=df[var], drop_first = True)
+
+            if self.params["insert_dummy_faltante"][var]["dummy"] in dummy_faltante.columns:
+                a = 1
+            else:
+                dummy_faltante[self.params["insert_dummy_faltante"][var]["dummy"]] = 0
+
+            df[list(dummy_faltante.columns)] = dummy_faltante
+            X_columns =  X_columns + list(dummy_faltante.columns)
         
         # Factor to number
+        df[list(self.params["factor_to_number"].keys())] = df[list(self.params["factor_to_number"].keys())].fillna('missing')
         for var in self.params["factor_to_number"].keys():
             
             X_columns = X_columns +  [var + '_grade']
@@ -67,7 +81,19 @@ class Engineering:
             X_columns = X_columns +  [var + '_adj']
         
             df[[var + '_adj']] = df[[var]] + self.params["scale_adjust"][var]["value"]
-        
+
+        # Unify to class
+        for var in self.params["unify_classes"].keys():
+            
+            X_columns = X_columns +  [var + '_unify']
+
+            class1 = self.params["unify_classes"][var]["class"]
+            df.loc[df[var] != class1, var] = 0
+            df.loc[df[var] == class1, var] = 1
+
+            df[[var + '_unify']] = df[[var]]
+
+
         # Selected Variables
         X_columns = X_columns + list(binary_dummy.columns) + self.params["identity"]
 

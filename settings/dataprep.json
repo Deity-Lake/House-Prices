@@ -1,6 +1,71 @@
 {
     "factor_to_number": {
 
+        "Fence":{
+            "order": ["GdPrv", "MnPrv", "GdWo", "MnWw", "NA", "missing"],
+            "grade": [5,4,3,2,1, -100]
+
+        },
+
+        "PavedDrive":{
+            "order": ["Y", "P", "N"],
+            "grade": [5,4,3]
+
+        },
+        
+        "PoolQC":{
+            "order": ["Ex", "Gd", "TA", "Fa", "Po", "NA", "missing"],
+            "grade": [5,4,3,2,1, 0, -100]
+
+        },
+        "GarageQual":{
+
+            "order": ["Ex", "Gd", "TA", "Fa", "Po", "NA", "missing"],
+            "grade": [5,4,3,2,1, 0, -100]
+        },
+
+        "GarageCond":{
+
+            "order": ["Ex", "Gd", "TA", "Fa", "Po", "NA", "missing"],
+            "grade": [5,4,3,2,1, 0, -100]
+        },
+
+        "GarageFinish":{
+            "order": ["Fin", "RFn", "Unf", "missing"],
+            "grade": [4,3,2,1]
+        },
+
+        "FireplaceQu":{
+
+            "order": ["Ex", "Gd", "TA", "Fa", "Po", "NA", "missing"],
+            "grade": [5,4,3,2,1, 0, -100]
+        },
+
+        "KitchenQual":{
+
+            "order": ["Ex", "Gd", "TA", "Fa", "Po", "NA", "missing"],
+            "grade": [5,4,3,2,1, 0, -100]
+        },
+
+        "BsmtQual":{
+
+            "order": ["Ex", "Gd", "TA", "Fa", "Po", "NA", "missing"],
+            "grade": [5,4,3,2,1, 0, -100]
+        },
+
+        "BsmtCond": {
+            "order": ["Ex", "Gd", "TA", "Fa", "Po", "NA", "missing"],
+            "grade": [5,4,3,2,1, 0, -100]
+
+        },
+
+        "BsmtExposure": {
+            "order": ["Gd", "Av", "Mn", "No", "NA", "missing"],
+            "grade": [5,4,3,2,1, -100]
+
+        },
+
+
         "ExterCond": {
             "order": ["Ex", "Gd", "TA", "Fa", "Po"],
             "grade": [5,4,3,2,1]
@@ -45,24 +110,34 @@
                  "OverallQual", 
                  "OverallCond", 
                  "Fireplaces", 
-                 "KitchenAbvGr"],
+                 "KitchenAbvGr",
+                 "YearBuilt",
+                 "YearRemodAdd",
+                "1stFlrSF",
+            "2ndFlrSF", "LowQualFinSF", "GrLivArea", "FullBath", "HalfBath", "BedroomAbvGr",
+        "TotRmsAbvGrd", "WoodDeckSF", "OpenPorchSF", "EnclosedPorch", "3SsnPorch", "ScreenPorch",
+    "MiscVal"],
 
     "missing_class": ["Alley", 
-                      "MasVnrType"],
+                      "MasVnrType",
+                      "Utilities",
+                    "BsmtFinType1", "BsmtQual", "BsmtCond", "BsmtExposure", "BsmtFinType2", "GarageType",
+                "GarageFinish", "GarageCond", "GarageQual", "GarageFinish", "FireplaceQu", "KitchenQual"
+            ],
 
     "missing_number_to_inf": ["LotFrontage", 
                               "BsmtFullBath", 
                               "BsmtHalfBath", 
                               "TotalBsmtSF", 
                               "GarageYrBlt", 
-                              "GarageCars"],
+                              "GarageCars",
+                               "MasVnrArea", "BsmtFinSF1", "BsmtFinSF2", "BsmtUnfSF", "GarageArea"],
 
     "binary_dummies": ["Street", 
                        "Alley", 
                        "SaleCondition", 
                        "LandSlope", 
                        "CentralAir", 
-                       "KitchenQual",
                        "Foundation",
                        "MSSubClass",
                        "MSZoning",
@@ -70,5 +145,40 @@
                        "Neighborhood",
                        "BldgType",
                        "RoofStyle",
-                       "MasVnrType"]
-    }  
+                       "MasVnrType",
+                       "Condition1",
+                    "BsmtFinType1", "BsmtFinType2", "GarageType"],
+
+    "unify_classes": {
+        
+        "Utilities": {
+            "class": "AllPub"
+            },
+
+        "Condition2":{
+            "class": "Norm"
+
+        },
+
+        "RoofMatl":{
+            "class": "CompShg"
+        },
+
+        "Heating":{
+            "class": "GasA"
+        },
+        "Electrical":{
+            "class": "SBrkr"
+        }
+    },
+
+    "insert_dummy_faltante":{
+
+        "HouseStyle":{
+            "dummy": "2.5Fin"
+        }
+
+    },
+
+    "futuro":["Exterior1st", "Exterior2nd", "Functional", "MiscFeature", "MoSold", "SaleType"]
+}  
