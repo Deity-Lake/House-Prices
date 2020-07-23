@@ -2,6 +2,23 @@
 
     "dummy_controlada":{
 
+    "SaleCondition":{
+        "tipo1": ["Partial"],
+        "tipo2": ["Family", "Normal"],
+        "tipo3": ["Abnorml", "Alloca"]
+
+    },
+
+    "Condition1":{
+
+        "tipo2": ["RRNe"],
+        "tipo3": ["RRAe"],
+        "tipo4": ["RRAn", "Norm"],
+        "tipo5": ["PosN"]
+
+
+    },
+
     "Foundation":{
         "tipo1": ["PConc"]
     }
@@ -309,7 +326,6 @@
     "binary_dummies": [
         "Street",
         "Alley",
-        "SaleCondition",
         "LandSlope",
         "CentralAir",
         "MSSubClass",
@@ -319,7 +335,6 @@
         "BldgType",
         "RoofStyle",
         "MasVnrType",
-        "Condition1",
         "BsmtFinType1",
         "BsmtFinType2",
         "GarageType"
