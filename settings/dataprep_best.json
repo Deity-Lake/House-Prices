@@ -1,4 +1,12 @@
 {
+
+    "dummy_controlada":{
+
+    "Foundation":{
+        "tipo1": ["PConc"]
+    }
+
+},
     "factor_to_number": {
         "GarageQual": {
             "order": [
@@ -304,7 +312,6 @@
         "SaleCondition",
         "LandSlope",
         "CentralAir",
-        "Foundation",
         "MSSubClass",
         "MSZoning",
         "LotConfig",

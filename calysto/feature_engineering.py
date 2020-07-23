@@ -45,6 +45,13 @@ class Engineering:
         df[list(binary_dummy.columns)] = binary_dummy
         X_columns =  X_columns + list(binary_dummy.columns)
 
+        # Dummy controlada
+        for var in self.params["dummy_controlada"].keys():
+            for classe in list(self.params["dummy_controlada"][var].keys()):
+                new_var = str(var) + "_" + str(classe)
+                X_columns = X_columns + [new_var]
+                df[new_var] = df[var].fillna("missing").isin(self.params["dummy_controlada"][var][classe])
+
         # Dummy faltante
         for var in self.params["insert_dummy_faltante"].keys():
             

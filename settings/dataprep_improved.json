@@ -1,9 +1,39 @@
 {
     "dummy_controlada":{
+
+        "BsmtFinType1":{
+            "tipo1": ["GLQ"]
+        },
+        "RoofStyle":{
+            "tipo1": ["Hip", "Shed"],
+            "tipo2": ["Flat"]
+        },
+        "Condition1":{
+            "tipo1": ["Norm"]
+
+        },
+        "Neighborhood":{
+            "tipo1": ["CollgCr"],
+            "tipo2": ["NAmes"],
+            "tipo3": ["OldTown"]
+        },
         "Fence":{
             "tipo1": ["GdPrv"],
             "tipo2": ["GdWo", "MnPrv"],
             "tipo3": ["MnWw"]
+        },
+        "Foundation":{
+            "tipo1": ["PConc"],
+            "tipo2": ["CBlock", "BrkTil", "Slab", "Stone"],
+            "tipo3": ["Wood"]
+        },
+        "LandSlope":{
+            "tipo1": ["Gtl"]
+        },
+        "SaleCondition":{
+            "tipo1":["Partial"],
+            "tipo2":["Normal"],
+            "tipo3":["Abnorml", "Family", "Alloca"]
         }
     },
 
@@ -206,18 +236,6 @@
                 1
             ]
         },
-        "LandSlope": {
-            "order": [
-                "Gtl",
-                "Mod",
-                "Sev"
-            ],
-            "grade": [
-                3,
-                2,
-                1
-            ]
-        },
         "LandContour": {
             "order": [
                 "Lvl",
@@ -280,7 +298,6 @@
         "Alley",
         "MasVnrType",
         "Utilities",
-        "BsmtFinType1",
         "BsmtQual",
         "BsmtCond",
         "BsmtExposure",
@@ -309,18 +326,12 @@
     "binary_dummies": [
         "Street",
         "Alley",
-        "SaleCondition",
-        "LandSlope",
         "CentralAir",
-        "Foundation",
         "MSSubClass",
         "MSZoning",
         "LotConfig",
-        "Neighborhood",
         "BldgType",
-        "RoofStyle",
         "MasVnrType",
-        "Condition1",
         "BsmtFinType1",
         "BsmtFinType2",
         "GarageType"

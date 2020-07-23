@@ -4,7 +4,7 @@ import pandas as pd
 import seaborn as sns; sns.set()
 from datetime import datetime
 from sklearn.pipeline import Pipeline
-from sklearn.model_selection import GridSearchCV, train_test_split
+from sklearn.model_selection import GridSearchCV, train_test_split, RandomizedSearchCV
 from sklearn.metrics import mean_squared_error as mse
 from sklearn.metrics import mean_squared_log_error, make_scorer, mean_squared_error
 from sklearn.ensemble import GradientBoostingRegressor, RandomForestRegressor
@@ -21,7 +21,8 @@ class Training:
 
         self.X_train, self.X_valid, self.y_train, self.y_valid = train_test_split(self.X, self.y, test_size=0.2, random_state=1903)
 
-    def gridsearch(self):
+    def gridsearch(self, random=False):
+        self.random = random
 
         for id in range(len(self.parameters)):
 
@@ -29,7 +30,17 @@ class Training:
 
         pipe = Pipeline(steps=[('estimator', RandomForestRegressor())])
         
-        self.results = GridSearchCV(pipe, 
+        if self.random:
+
+            self.results = RandomizedSearchCV(pipe, 
+                                    n_iter = 100, 
+                                    verbose=2, 
+                                    n_jobs=-1, 
+                                    scoring = 'neg_mean_squared_error')
+
+        else: 
+            
+            self.results = GridSearchCV(pipe, 
                                     self.parameters, 
                                     verbose=2, 
                                     n_jobs=-1, 
