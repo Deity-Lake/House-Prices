@@ -1,29 +1,42 @@
 {
-
-    "dummy_controlada":{
-
-    "SaleCondition":{
-        "tipo1": ["Partial"],
-        "tipo2": ["Family", "Normal"],
-        "tipo3": ["Abnorml", "Alloca"]
-
+    "dummy_controlada": {
+        "SaleCondition": {
+            "tipo1": [
+                "Partial"
+            ],
+            "tipo2": [
+                "Family",
+                "Normal"
+            ],
+            "tipo3": [
+                "Abnorml",
+                "Alloca"
+            ]
+        },
+        "Condition1": {
+            "tipo1": [
+                "RRNn"
+            ],
+            "tipo2": [
+                "RRNe"
+            ],
+            "tipo3": [
+                "RRAe"
+            ],
+            "tipo4": [
+                "RRAn",
+                "Norm"
+            ],
+            "tipo5": [
+                "PosN"
+            ]
+        },
+        "Foundation": {
+            "tipo1": [
+                "PConc"
+            ]
+        }
     },
-
-    "Condition1":{
-
-        "tipo2": ["RRNe"],
-        "tipo3": ["RRAe"],
-        "tipo4": ["RRAn", "Norm"],
-        "tipo5": ["PosN"]
-
-
-    },
-
-    "Foundation":{
-        "tipo1": ["PConc"]
-    }
-
-},
     "factor_to_number": {
         "GarageQual": {
             "order": [

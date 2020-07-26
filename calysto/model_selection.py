@@ -8,6 +8,7 @@ from sklearn.model_selection import GridSearchCV, train_test_split, RandomizedSe
 from sklearn.metrics import mean_squared_error as mse
 from sklearn.metrics import mean_squared_log_error, make_scorer, mean_squared_error
 from sklearn.ensemble import GradientBoostingRegressor, RandomForestRegressor
+from scipy.stats import uniform, randint
 
 
 class Training:
@@ -28,12 +29,23 @@ class Training:
 
             self.parameters[id]["estimator"] = [eval(str(self.parameters[id]["estimator"][0]))]
 
-        pipe = Pipeline(steps=[('estimator', RandomForestRegressor())])
+        pipe = Pipeline(steps=[('estimator', GradientBoostingRegressor())])
         
         if self.random:
 
-            self.results = RandomizedSearchCV(pipe, 
-                                    n_iter = 100, 
+            distributions = dict(estimator__n_estimators=randint(low=500, high=1000),
+                                         estimator__learning_rate=uniform(loc=0.01, scale=1),
+                                         estimator__subsample = uniform(loc=0.01, scale=0.9),
+                                         estimator__min_samples_split = randint(low=1, high=5),
+                                         estimator__min_samples_leaf = randint(low=1, high=10),
+                                         estimator__min_impurity_decrease = uniform(loc=0, scale=0.9),
+                                         estimator__alpha = uniform(loc=0.01, scale=0.5),
+                                         estimator__max_depth = randint(low=1, high=10)
+                                         )
+
+            self.results = RandomizedSearchCV(pipe,
+                                    distributions,
+                                    n_iter = 150, 
                                     verbose=2, 
                                     n_jobs=-1, 
                                     scoring = 'neg_mean_squared_error')
@@ -61,7 +73,13 @@ class Training:
                                 random_state=1903,
                                 loss="huber",
                                 learning_rate = self.results.best_params_["estimator__learning_rate"],
-                                n_estimators = self.results.best_params_["estimator__n_estimators"])
+                                n_estimators = self.results.best_params_["estimator__n_estimators"],
+                                subsample = self.results.best_params_["estimator__subsample"],
+                                min_samples_split = self.results.best_params_["estimator__min_samples_split"],
+                                min_samples_leaf = self.results.best_params_["estimator__min_samples_leaf"],
+                                min_impurity_decrease = self.results.best_params_["estimator__min_impurity_decrease"],
+                                alpha = self.results.best_params_["estimator__alpha"]
+                                )
             
         else:
             if self.best_method == 'RandomForestRegressor':

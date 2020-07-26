@@ -1,42 +1,82 @@
 {
+
     "dummy_controlada":{
 
-        "BsmtFinType1":{
-            "tipo1": ["GLQ"]
+        "Functional":{
+            "tipo1": ["Typ"],
+            "tipo2": ["Maj2"],
+            "tipo3": ["Maj1", "Min2", "Min1"]
         },
+
+        "Heating":{
+            "tipo1": ["GasA"],
+            "tipo3": ["Grav"]
+
+        },
+
+        "HouseStyle":{
+            "tipo1": ["1.5Fin", "2.5Unf"],
+            "tipo2": ["1Story", "2Story", "2.5Fin"],
+            "tipo3": ["SFoyer"],
+            "tipo4": ["1.5Unf"]
+
+        },
+
+        "BsmtFinType1": {
+            "tipo1": ["Unf"],
+            "tipo2": ["ALQ", "BLQ", "LwQ", "Rec"],
+            "tipo3": ["GLQ"]
+
+        },
+
+        "BsmtFinType2": {
+            "tipo1": ["Unf", "ALQ"],
+            "tipo2": ["Rec","LwQ", "BLQ"]
+
+        },
+
+        "MSZoning": {
+            "tipo1": ["C (all)"],
+            "tipo2": ["RM", "RH"],
+            "tipo3": ["RL", "RV"]
+
+        },
+
+        "MasVnrType": {
+
+            "tipo1": ["Stone"],
+            "tipo2": ["None"],
+            "tipo3": ["BrkFace"],
+            "tipo4": ["BrkCmn"]
+        },
+
         "RoofStyle":{
-            "tipo1": ["Hip", "Shed"],
-            "tipo2": ["Flat"]
+            "tipo3": ["Hip", "Flat"],
+            "tipo4": ["Gambrel"],
+            "tipo5": ["Mansard", "Gable"]
         },
-        "Condition1":{
-            "tipo1": ["Norm"]
 
-        },
-        "Neighborhood":{
-            "tipo1": ["CollgCr"],
-            "tipo2": ["NAmes"],
-            "tipo3": ["OldTown"]
-        },
-        "Fence":{
-            "tipo1": ["GdPrv"],
-            "tipo2": ["GdWo", "MnPrv"],
-            "tipo3": ["MnWw"]
-        },
-        "Foundation":{
-            "tipo1": ["PConc"],
-            "tipo2": ["CBlock", "BrkTil", "Slab", "Stone"],
-            "tipo3": ["Wood"]
-        },
-        "LandSlope":{
-            "tipo1": ["Gtl"]
-        },
         "SaleCondition":{
-            "tipo1":["Partial"],
-            "tipo2":["Normal"],
-            "tipo3":["Abnorml", "Family", "Alloca"]
-        }
-    },
+            "tipo1": ["Partial"],
+            "tipo2": ["Family", "Normal"],
+            "tipo3": ["Abnorml", "Alloca"]
 
+        },
+
+        "Condition1":{
+
+            "tipo3": ["RRAe"],
+            "tipo4": ["RRAn", "Norm"],
+            "tipo5": ["PosN"]
+
+
+        },
+
+        "Foundation":{
+            "tipo1": ["PConc"]
+        }
+
+},
     "factor_to_number": {
         "GarageQual": {
             "order": [
@@ -236,6 +276,18 @@
                 1
             ]
         },
+        "LandSlope": {
+            "order": [
+                "Gtl",
+                "Mod",
+                "Sev"
+            ],
+            "grade": [
+                3,
+                2,
+                1
+            ]
+        },
         "LandContour": {
             "order": [
                 "Lvl",
@@ -296,12 +348,10 @@
     ],
     "missing_class": [
         "Alley",
-        "MasVnrType",
-        "Utilities",
+        "BsmtFinType1",
         "BsmtQual",
         "BsmtCond",
         "BsmtExposure",
-        "BsmtFinType2",
         "GarageType",
         "GarageFinish",
         "GarageCond",
@@ -326,41 +376,29 @@
     "binary_dummies": [
         "Street",
         "Alley",
+        "LandSlope",
         "CentralAir",
         "MSSubClass",
-        "MSZoning",
         "LotConfig",
+        "Neighborhood",
         "BldgType",
         "MasVnrType",
-        "BsmtFinType1",
-        "BsmtFinType2",
         "GarageType"
     ],
     "unify_classes": {
-        "Utilities": {
-            "class": "AllPub"
-        },
+
         "Condition2": {
             "class": "Norm"
         },
         "RoofMatl": {
             "class": "CompShg"
         },
-        "Heating": {
-            "class": "GasA"
-        },
         "Electrical": {
             "class": "SBrkr"
         }
     },
-    "insert_dummy_faltante": {
-        "HouseStyle": {
-            "dummy": "2.5Fin"
-        }
-    },
     "futuro": [
         "Exterior1st",
-        "Exterior2nd",
-        "Functional"
+        "Exterior2nd"
     ]
 }

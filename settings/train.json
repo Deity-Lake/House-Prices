@@ -1,7 +1,7 @@
 [
     {
         "estimator": [
-            "GradientBoostingRegressor(random_state=1903, loss='lad')"
+            "GradientBoostingRegressor(random_state=1903, loss='huber')"
         ],
         "estimator__n_estimators": [
             750
@@ -13,10 +13,12 @@
             0.5
         ],
         "estimator__min_samples_split": [
-            2,4
+            2,
+            4
         ],
         "estimator__min_samples_leaf": [
-            1,5
+            1,
+            5
         ],
         "estimator__min_impurity_decrease": [
             0
@@ -25,7 +27,7 @@
             0.3
         ],
         "estimator__max_depth": [
-            2,3
+            2,
+            3
         ]
-    }
-]
+        }]
