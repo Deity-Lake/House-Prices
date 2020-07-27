@@ -46,7 +46,7 @@ class Training:
             self.results = RandomizedSearchCV(pipe,
                                     distributions,
                                     n_iter = 150, 
-                                    verbose=2, 
+                                    verbose=3, 
                                     n_jobs=-1, 
                                     scoring = 'neg_mean_squared_error')
 
@@ -54,8 +54,8 @@ class Training:
             
             self.results = GridSearchCV(pipe, 
                                     self.parameters, 
-                                    verbose=2, 
-                                    n_jobs=-1, 
+                                    verbose=3, 
+                                    n_jobs=-1,
                                     scoring = 'neg_mean_squared_error')
 
         self.results.fit(self.X_train, self.y_train)
@@ -70,7 +70,7 @@ class Training:
         if self.best_method == 'GradientBoostingRegressor':
             
             self.best_model = GradientBoostingRegressor(
-                                random_state=1903,
+                                random_state=self.results.best_params_["estimator__random_state"],
                                 loss="huber",
                                 learning_rate = self.results.best_params_["estimator__learning_rate"],
                                 n_estimators = self.results.best_params_["estimator__n_estimators"],
@@ -78,9 +78,10 @@ class Training:
                                 min_samples_split = self.results.best_params_["estimator__min_samples_split"],
                                 min_samples_leaf = self.results.best_params_["estimator__min_samples_leaf"],
                                 min_impurity_decrease = self.results.best_params_["estimator__min_impurity_decrease"],
-                                alpha = self.results.best_params_["estimator__alpha"]
+                                alpha = self.results.best_params_["estimator__alpha"],
+                                max_depth = self.results.best_params_["estimator__max_depth"]
                                 )
-            
+                
         else:
             if self.best_method == 'RandomForestRegressor':
 
